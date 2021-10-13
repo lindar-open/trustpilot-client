@@ -9,7 +9,7 @@ public class NumberOfReviews {
     private Integer usedForTrustScoreCalculation;
     private Integer oneStar;
     private Integer twoStars;
-    private Integer tothreeStarstal;
+    private Integer threeStars;
     private Integer fourStars;
     private Integer fiveStars;
 

@@ -1,10 +1,11 @@
 package com.lindar.trustpilot.api;
 
+import com.lindar.trustpilot.exception.TrustpilotException;
 import com.lindar.trustpilot.model.response.FindBusinessUnitResponse;
-import com.lindar.wellrested.WellRestedRequest;
-
-import java.util.HashMap;
-import java.util.Map;
+import com.lindar.wellrested.vo.Result;
+import com.lindar.wellrested.vo.ResultBuilder;
+import com.lindar.wellrested.vo.WellRestedResponse;
+import lindar.acolyte.util.UrlAcolyte;
 
 public class BusinessUnitsPublicResource extends AbstractResource {
 
@@ -12,11 +13,9 @@ public class BusinessUnitsPublicResource extends AbstractResource {
 
     private final String BUSINESS_UNITS_FIND = BUSINESS_UNITS + "find";
 
-    public FindBusinessUnitResponse findBusinessUnit(String apiKey, String businessUnitName) {
-        Map<String, String>  parameters = new HashMap<>();
-        parameters.put("name", businessUnitName);
-        return WellRestedRequest.builder().url(BASE_URL + BUSINESS_UNITS_FIND).addGlobalHeader("apikey", apiKey).build().get().submit().fromJson().castTo(
-                FindBusinessUnitResponse.class);
+    public Result<FindBusinessUnitResponse> findBusinessUnit(String apiKey, String businessUnitName) throws TrustpilotException {
+        WellRestedResponse response = doApiKeyGetRequest(apiKey, UrlAcolyte.addParam(BUSINESS_UNITS_FIND, "name", businessUnitName));
+        return ResultBuilder.successful(response.fromJson().castTo(FindBusinessUnitResponse.class));
     }
 
 }
