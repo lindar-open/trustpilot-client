@@ -1,16 +1,13 @@
 package com.lindar.trustpilot.model;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
-@Data
-public class ProductReviewInvitation {
+@EqualsAndHashCode(callSuper = true) @Data
+public class ProductReviewInvitation extends BaseReviewInvitation{
 
-    private String              templateId;
-    private LocalDateTime       preferredSendTime;
-    private String              redirectUri;
     private List<ProductReview> products;
     private List<String>        productSkus;
 
