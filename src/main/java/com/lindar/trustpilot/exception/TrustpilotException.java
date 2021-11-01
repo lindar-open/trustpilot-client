@@ -1,4 +1,9 @@
 package com.lindar.trustpilot.exception;
 
-public class TrustpilotException extends Exception{
+public abstract class TrustpilotException extends Exception {
+
+    public TrustpilotException(String message) {
+        super(message);
+    }
+
 }

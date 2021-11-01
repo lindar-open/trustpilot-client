@@ -1,6 +1,8 @@
 package com.lindar.trustpilot.api;
 
+import com.lindar.trustpilot.exception.TrustpilotBadRequestException;
 import com.lindar.trustpilot.exception.TrustpilotException;
+import com.lindar.trustpilot.exception.TrustpilotTimeoutException;
 import com.lindar.trustpilot.exception.TrustpilotUnauthorizedException;
 import com.lindar.trustpilot.exception.TrustpilotUnexpectedErrorException;
 import com.lindar.wellrested.WellRestedRequest;
@@ -66,14 +68,21 @@ abstract class AbstractResource {
         if (response.isValid()) return response;
 
         if (response.getStatusCode() == 401) {
-            ErrorResponse errorResponse = response.fromJson().castTo(ErrorResponse.class);
-            throw new TrustpilotUnauthorizedException(response.getStatusCode(), errorResponse.getFault().getDetail().getErrorcode(), errorResponse.getFault().getFaultstring());
+            UnauthorizedErrorResponse errorResponse = response.fromJson().castTo(UnauthorizedErrorResponse.class);
+            throw new TrustpilotUnauthorizedException(errorResponse.getFault().getFaultstring(), response.getStatusCode(), errorResponse.getFault().getDetail().getErrorcode());
         }
-        throw new TrustpilotUnexpectedErrorException(response.getStatusCode(), response.getServerResponse());
+        if (response.getStatusCode() == 400) {
+            BadRequestErrorResponse errorResponse = response.fromJson().castTo(BadRequestErrorResponse.class);
+            throw new TrustpilotBadRequestException(errorResponse.getError(), response.getStatusCode(), errorResponse.getErrorCode());
+        }
+        if (response.isClientTimeout() || response.isConnectionTimeout() || response.isSocketTimeout()) {
+            throw new TrustpilotTimeoutException("Request timed out");
+        }
+        throw new TrustpilotUnexpectedErrorException(response.getServerResponse(), response.getStatusCode());
     }
 
     @Data
-    private class ErrorResponse {
+    private class UnauthorizedErrorResponse {
 
         private Fault fault;
 
@@ -89,6 +98,14 @@ abstract class AbstractResource {
             }
 
         }
+
+    }
+
+    @Data
+    private class BadRequestErrorResponse {
+
+        private String ErrorCode;
+        private String Error;
 
     }
 

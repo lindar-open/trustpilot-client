@@ -1,11 +1,15 @@
 package com.lindar.trustpilot.exception;
 
-import lombok.AllArgsConstructor;
+import lombok.Getter;
 
-@AllArgsConstructor
-public class TrustpilotUnexpectedErrorException extends TrustpilotException{
+public class TrustpilotUnexpectedErrorException extends TrustpilotException {
 
+    @Getter
     private final int statusCode;
-    private final String errorMessage;
+
+    public TrustpilotUnexpectedErrorException(String message, int statusCode) {
+        super(message);
+        this.statusCode = statusCode;
+    }
 
 }
