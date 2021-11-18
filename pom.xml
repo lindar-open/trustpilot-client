@@ -6,7 +6,7 @@
 
     <groupId>com.lindar</groupId>
     <artifactId>trustpilot-client</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
 
     <name>Trustpilot Client</name>
     <description>Trustpilot API client written in Java</description>
