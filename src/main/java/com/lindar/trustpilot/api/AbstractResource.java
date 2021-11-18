@@ -65,7 +65,7 @@ abstract class AbstractResource {
     }
 
     private WellRestedResponse validateResponse(WellRestedResponse response) throws TrustpilotException {
-        if (response.isValid()) return response;
+        if (response.getStatusCode() < 300 && response.getStatusCode() != -1) return response;
 
         if (response.getStatusCode() == 401) {
             UnauthorizedErrorResponse errorResponse = response.fromJson().castTo(UnauthorizedErrorResponse.class);
