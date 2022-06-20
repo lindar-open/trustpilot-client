@@ -1,11 +1,13 @@
 package com.lindar.trustpilot.api;
 
+import com.google.gson.FieldNamingPolicy;
 import com.lindar.trustpilot.exception.TrustpilotBadRequestException;
 import com.lindar.trustpilot.exception.TrustpilotException;
 import com.lindar.trustpilot.exception.TrustpilotTimeoutException;
 import com.lindar.trustpilot.exception.TrustpilotUnauthorizedException;
 import com.lindar.trustpilot.exception.TrustpilotUnexpectedErrorException;
 import com.lindar.wellrested.WellRestedRequest;
+import com.lindar.wellrested.json.GsonJsonMapper;
 import com.lindar.wellrested.vo.WellRestedResponse;
 import lindar.acolyte.util.UrlAcolyte;
 import lombok.Data;
@@ -53,7 +55,13 @@ abstract class AbstractResource {
     }
 
     private WellRestedRequest buildBasicAuthRequest(String apiKey, String apiSecret, String resourcePath) {
-        return WellRestedRequest.builder().url(UrlAcolyte.safeConcat(baseUrl, resourcePath)).addAuthorizationGlobalHeader(apiKey, apiSecret).build();
+        return WellRestedRequest.builder()
+                                .jsonMapper(new GsonJsonMapper.Builder()
+                                                    .gsonCustomiser(gsonBuilder -> gsonBuilder.setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES))
+                                                    .build())
+                                .url(UrlAcolyte.safeConcat(baseUrl, resourcePath))
+                                .addAuthorizationGlobalHeader(apiKey, apiSecret)
+                                .build();
     }
 
     private WellRestedRequest buildApiKeyRequest(String apiKey, String resourcePath) {
