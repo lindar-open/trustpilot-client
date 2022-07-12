@@ -1,0 +1,52 @@
+{
+  "events":[
+    {
+      "eventName":"service-review-created",
+      "version":"1",
+      "eventData":{
+        "id":"62c8968be77911f2449e9f74",
+        "language":"en",
+        "stars":4,
+        "title":"Some of the screens are to hard to…",
+        "text":"Some of the screens are to hard to navigate. If you are playing blackjack and you want to go to roulette you have to come out of screen and relog back in",
+        "locationId":null,
+        "referenceId":"XELeKJriAxDQq3ps",
+        "createdAt":"2022-07-08T22:41:48Z",
+        "link":"https://api.trustpilot.com/v1/reviews/62c8968be77911f2449e9f74",
+        "isVerified":true,
+        "consumer":{
+          "id":"618d5a8bebf38a0012a83bdd",
+          "name":"pantelakis georgiou",
+          "link":"https://api.trustpilot.com/v1/consumers/618d5a8bebf38a0012a83bdd"
+        },
+        "tags":[
+
+        ]
+      }
+    },
+    {
+      "eventName":"foo",
+      "version":"1",
+      "eventData":{
+        "id":"62c8968be77911f2449e9f74",
+        "language":"en",
+        "stars":4,
+        "title":"Some of the screens are to hard to…",
+        "text":"Some of the screens are to hard to navigate. If you are playing blackjack and you want to go to roulette you have to come out of screen and relog back in",
+        "locationId":null,
+        "referenceId":"XELeKJriAxDQq3ps",
+        "createdAt":"2022-07-08T22:41:48Z",
+        "link":"https://api.trustpilot.com/v1/reviews/62c8968be77911f2449e9f74",
+        "isVerified":true,
+        "consumer":{
+          "id":"618d5a8bebf38a0012a83bdd",
+          "name":"pantelakis georgiou",
+          "link":"https://api.trustpilot.com/v1/consumers/618d5a8bebf38a0012a83bdd"
+        },
+        "tags":[
+
+        ]
+      }
+    }
+  ]
+}
