@@ -1,9 +1,9 @@
 package com.lindar.trustpilot.model.event.kafka;
 
-import com.lindar.trustpilot.model.event.ServiceReviewCreatedData;
+import com.lindar.trustpilot.model.event.TrustpilotServiceReviewCreatedData;
 import lombok.Data;
 
 @Data
 class ServiceReviewCreated extends TrustpilotEvent {
-    private ServiceReviewCreatedData eventData;
+    private TrustpilotServiceReviewCreatedData eventData;
 }

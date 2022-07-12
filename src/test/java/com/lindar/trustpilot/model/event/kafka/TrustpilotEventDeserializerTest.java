@@ -1,7 +1,7 @@
 package com.lindar.trustpilot.model.event.kafka;
 
-import com.lindar.trustpilot.model.event.ServiceReviewCreatedData;
-import com.lindar.trustpilot.model.event.BaseEventData;
+import com.lindar.trustpilot.model.event.TrustpilotServiceReviewCreatedData;
+import com.lindar.trustpilot.model.event.TrustpilotBaseEventData;
 import org.assertj.core.api.Condition;
 import org.junit.jupiter.api.Test;
 
@@ -20,11 +20,11 @@ public class TrustpilotEventDeserializerTest {
 
     @Test
     public void testDeserializer() {
-        List<BaseEventData> events = deserializer.deserialize("none", payload.getBytes(UTF_8));
+        List<TrustpilotBaseEventData> events = deserializer.deserialize("none", payload.getBytes(UTF_8));
 
         assertThat(events).hasSize(2);
-        assertThat(events).hasOnlyElementsOfType(BaseEventData.class);
-        assertThat(events).areAtMost(1, instanceOf(ServiceReviewCreatedData.class));
+        assertThat(events).hasOnlyElementsOfType(TrustpilotBaseEventData.class);
+        assertThat(events).areAtMost(1, instanceOf(TrustpilotServiceReviewCreatedData.class));
     }
 
     private Condition instanceOf(Class aClass) {
