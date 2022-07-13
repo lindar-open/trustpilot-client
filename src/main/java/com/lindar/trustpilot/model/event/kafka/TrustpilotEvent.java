@@ -14,6 +14,7 @@ import lombok.Data;
 )
 @JsonSubTypes({
         @Type(value = ServiceReviewCreated.class, name = "service-review-created"),
+        @Type(value = ServiceReviewDeleted.class, name = "service-review-deleted"),
 })
 class TrustpilotEvent {
     private String eventName;

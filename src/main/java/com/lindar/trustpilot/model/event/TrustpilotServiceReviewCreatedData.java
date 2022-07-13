@@ -6,7 +6,6 @@ import java.time.Instant;
 
 @Data
 public class TrustpilotServiceReviewCreatedData extends TrustpilotBaseEventData {
-    private String   id;
     private int      stars;
     private String   title;
     private String   text;
