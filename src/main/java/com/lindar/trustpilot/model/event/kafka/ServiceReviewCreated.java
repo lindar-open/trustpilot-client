@@ -4,6 +4,5 @@ import com.lindar.trustpilot.model.event.TrustpilotServiceReviewCreatedData;
 import lombok.Data;
 
 @Data
-class ServiceReviewCreated extends TrustpilotEvent {
-    private TrustpilotServiceReviewCreatedData eventData;
+class ServiceReviewCreated extends TrustpilotEvent<TrustpilotServiceReviewCreatedData> {
 }
