@@ -1,6 +1,5 @@
 package com.lindar.trustpilot.api;
 
-import com.google.gson.FieldNamingPolicy;
 import com.lindar.trustpilot.exception.TrustpilotException;
 import com.lindar.trustpilot.model.response.AuthenticationResponse;
 import com.lindar.wellrested.vo.Result;
@@ -24,8 +23,7 @@ public class AuthenticationResource extends AbstractResource {
         formParams.put("username", trustpilotUsername);
         formParams.put("password", trustpilotPassword);
         WellRestedResponse response = doBasicAuthPostRequest(apiKey, apiSecret, OAUTH_BUSINESS_ACCESS_TOKEN, formParams);
-        return ResultBuilder.successful(
-                response.fromJson().gsonCustomiser(gsonBuilder -> gsonBuilder.setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)).castTo(AuthenticationResponse.class));
+        return ResultBuilder.successful(response.fromJson().castTo(AuthenticationResponse.class));
     }
 
     public Result<AuthenticationResponse> refreshAccessToken(String apiKey, String apiSecret, String refreshToken) throws TrustpilotException {
@@ -33,8 +31,7 @@ public class AuthenticationResource extends AbstractResource {
         formParams.put("grant_type", "refresh_token");
         formParams.put("refresh_token", refreshToken);
         WellRestedResponse response = doBasicAuthPostRequest(apiKey, apiSecret, OAUTH_BUSINESS_REFRESH_TOKEN, formParams);
-        return ResultBuilder.successful(
-                response.fromJson().gsonCustomiser(gsonBuilder -> gsonBuilder.setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)).castTo(AuthenticationResponse.class));
+        return ResultBuilder.successful(response.fromJson().castTo(AuthenticationResponse.class));
     }
 
     public Result<Void> revokeRefreshToken(String refreshToken) throws TrustpilotException {
