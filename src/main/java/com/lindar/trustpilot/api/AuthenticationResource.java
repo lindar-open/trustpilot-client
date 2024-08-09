@@ -17,6 +17,10 @@ public class AuthenticationResource extends AbstractResource {
     private final String OAUTH_BUSINESS_REFRESH_TOKEN        = OAUTH_BUSINESS + "refresh";
     private final String OAUTH_BUSINESS_REVOKE_REFRESH_TOKEN = OAUTH_BUSINESS + "revoke";
 
+    public AuthenticationResource(String baseUrl) {
+        super(baseUrl);
+    }
+
     public Result<AuthenticationResponse> requestAccessToken(String apiKey, String apiSecret, String trustpilotUsername, String trustpilotPassword) throws TrustpilotException {
         Map<String, String> formParams = new HashMap<>();
         formParams.put("grant_type", "password");
