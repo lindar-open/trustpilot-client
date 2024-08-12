@@ -13,6 +13,10 @@ public class BusinessUnitsPublicResource extends AbstractResource {
 
     private final String BUSINESS_UNITS_FIND = BUSINESS_UNITS + "find";
 
+    public BusinessUnitsPublicResource(String baseUrl) {
+        super(baseUrl);
+    }
+
     public Result<FindBusinessUnitResponse> findBusinessUnit(String apiKey, String businessUnitName) throws TrustpilotException {
         WellRestedResponse response = doApiKeyGetRequest(apiKey, UrlAcolyte.addParam(BUSINESS_UNITS_FIND, "name", businessUnitName));
         return ResultBuilder.successful(response.fromJson().castTo(FindBusinessUnitResponse.class));

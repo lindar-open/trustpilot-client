@@ -12,8 +12,8 @@ import com.lindar.wellrested.vo.WellRestedResponse;
 
 public class InvitationResource extends AbstractResource {
 
-    public InvitationResource() {
-        super("https://invitations-api.trustpilot.com/v1/");
+    public InvitationResource(String baseUrl) {
+        super(baseUrl);
     }
 
     public Result<Void> createInvitations(String accessToken, String businessUnitId, CreateInvitationsRequest createInvitationsRequest) throws TrustpilotException {

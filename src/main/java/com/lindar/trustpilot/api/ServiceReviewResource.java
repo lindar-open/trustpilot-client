@@ -10,6 +10,10 @@ public class ServiceReviewResource extends AbstractResource {
 
     private static final String SERVICE_REVIEWS = "reviews/";
 
+    public ServiceReviewResource(String baseUrl) {
+        super(baseUrl);
+    }
+
     public Result<GetServiceReviewDetailResponse> getReviewDetails(String apiKey, String serviceReviewId) throws TrustpilotException {
         WellRestedResponse response = doApiKeyGetRequest(apiKey, SERVICE_REVIEWS + serviceReviewId);
         return ResultBuilder.successful(response.fromJson().castTo(GetServiceReviewDetailResponse.class));

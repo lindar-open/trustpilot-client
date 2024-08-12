@@ -16,16 +16,10 @@ import java.util.Map;
 
 abstract class AbstractResource {
 
-    private final String DEFAULT_URL = "https://api.trustpilot.com/v1/";
-
     protected String baseUrl;
 
     public AbstractResource(String baseUrl) {
         this.baseUrl = baseUrl;
-    }
-
-    public AbstractResource() {
-        this.baseUrl = DEFAULT_URL;
     }
 
 
